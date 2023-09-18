@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: IBM Plex Sans;
+}
+
+:root {
+  --primary: rgb(52, 69, 66);
+  --primary-hover: #275049;
+  --primary-active: #0b6758;
+  --black: #000;
+  --white: #fff;
+  --text-color: #344542;
+  --text-red: red;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  box-shadow: 0 2px 5px 1px rgba(52, 69, 66, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header__navigate {
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--text-color);
+}
+.logo {
+  justify-self: center;
+  width: 150px;
+  padding: 10px 0px;
+}
+.logout {
+  border-radius: 8px;
+  padding: 14px;
+  background-color: var(--primary);
+  font-weight: 500;
+  color: var(--white);
+}
+
+.logout:hover {
+  background-color: var(--primary-hover);
+  color: red;
+}
+.logout:active {
+  background-color: var(--primary-active);
+}
+
+

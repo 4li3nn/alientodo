@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;400;500;600;700&display=swap");
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: IBM Plex Sans;
+}
+
+:root {
+  --primary: #344542;
+  --primary-hover: #275049;
+  --primary-active: #0b6758;
+  --black: #000;
+  --white: #fff;
+  --text-color: #344542;
+  --text-red: red;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+}
+.logo {
+  width: 150px;
+  padding: 20px 0px;
+}
+.welcome {
+  font-weight: 600;
+  padding-bottom: 16px;
+  color: var(--text-color);
+}
+.subwelcome {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 18px;
+}
+.notify {
+  width: 360px;
+  padding: 20px;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 129, 130, 0.4);
+  background-color: #ffebe9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.close-notify {
+  font-size: 2rem;
+  color: red;
+  font-weight: 800;
+  cursor: pointer;
+}
+.form-auth {
+  background-color: rgba(22, 24, 35, 0.06);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  padding: 20px;
+  background-color: #f6f8fa;
+}
+.submit {
+  border-radius: 8px;
+  padding: 10px;
+  background-color: var(--primary);
+  font-weight: 600;
+  font-size: medium;
+  color: var(--white);
+}
+.submit:hover {
+  background-color: var(--primary-hover);
+}
+.submit:active {
+  background-color: var(--primary-active);
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+.wrap-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.label {
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-size: 18px;
+  display: flex;
+  text-align: left;
+}
+.input {
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  margin-top: 4px;
+  margin-bottom: 6px;
+  padding: 5px 12px;
+  line-height: 22px;
+  font-size: 18px;
+}
+.input:focus {
+  border-color: #0969da;
+  outline: 1px solid #0969da;
+}
+.remember-wrapper{
+  padding: 0px 0px 15px;
+}
+
+.forgot {
+  color: #0969da;
+  font-size: 18px;
+}
+.error-message{
+  color: red;
+}
+.redirect-register {
+  text-align: center;
+  padding-top: 10px;
+  color: var(--text-color);
+  font-size: 18px;
+}
+.redirect-register:hover {
+  color: blue;
+}

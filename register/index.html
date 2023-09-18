@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Alien</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <img src="../assets/LogoSVG.svg" alt="logo" class="logo" />
+      <h2 class="welcome">Register to The world of Aliens</h2>
+      <form action="" name="form-register" class="form-auth" id="form-register">
+        <div class="form-group">
+          <div class="wrap-label">
+            <label for="fullname" class="label">Fullname</label>
+          </div>
+          <input id="fullname" type="text" class="input" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <div class="wrap-label">
+            <label for="email" class="label">Email</label>
+          </div>
+          <input id="email" type="text" class="input" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <div class="wrap-label">
+            <label for="username" class="label">Username</label>
+          </div>
+          <input id="username" type="text" class="input" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <div class="wrap-label">
+            <label for="phone-number" class="label">Phone number</label>
+          </div>
+          <input id="phone-number" type="text" class="input" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <div class="wrap-label">
+            <label for="password" class="label">Password</label>
+          </div>
+          <input id="password" type="password" class="input" />
+          <span class="error-message"></span>
+        </div>
+        <div class="form-group">
+          <div class="wrap-label">
+            <label for="confirm-password" class="label">
+              Confirm Password</label
+            >
+          </div>
+          <input id="confirm-password" type="password" class="input" />
+          <span class="error-message"></span>
+        </div>
+        <button id="register-button" class="submit">Register</button>
+        <a class="redirect-login" href="/aliendoit/login/index.html">Do you already have an account?</a>
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
