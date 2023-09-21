@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+body {
+  font-family: IBM Plex Sans;
+}
+
+:root {
+  --primary: rgb(52, 69, 66);
+  --primary-hover: #275049;
+  --primary-active: #0b6758;
+  --black: #000;
+  --white: #fff;
+  --text-color: #344542;
+  --text-red: red;
+}
+.button-small {
+  border-radius: 8px;
+  padding: 12px;
+  background-color: var(--primary);
+  font-weight: 500;
+  color: var(--white);
+}
+
+.button-small:hover {
+  background-color: var(--primary-hover);
+  color: black;
+}
+.button-small:active {
+  background-color: var(--primary-active);
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  padding: 0 5%;
+  box-shadow: 0 2px 5px 1px rgba(52, 69, 66, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header__welcome {
+  font-weight: 600;
+  font-size: 20px;
+}
+.logo {
+  justify-self: center;
+  width: 150px;
+  padding: 10px 0px;
+}
+.logout {
+  border-radius: 8px;
+  padding: 14px;
+  background-color: var(--primary);
+  font-weight: 500;
+  color: var(--white);
+}
+
+.logout:hover {
+  background-color: var(--primary-hover);
+  color: red;
+}
+.logout:active {
+  background-color: var(--primary-active);
+}
+.content {
+  width: 70%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content__title {
+  color: var(--text-color);
+}
+.create-project{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-project__input{
+  padding: 10px;
+  outline: none;
+  margin: 10px;
+  width: 70%;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+.table-project {
+  border-collapse: collapse;
+  color: var(--primary-hover);
+  width: 100%;
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: center;
+}
+.table-project td,
+th {
+  border: 1px solid #9c9a9a;
+  padding: 10px;
+}
+.table-project td:nth-child(1) {
+  text-align: left;
+  width: 50%;
+}

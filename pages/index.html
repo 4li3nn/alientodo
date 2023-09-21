@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project | Alien</title>
+    <link rel="stylesheet" href="../styles/project.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="logo">
+          <img src="../assets/LogoSVG.svg" alt="logo" />
+        </div>
+        <div class="header__welcome">
+          Welcome <span id="welcome-username"></span> to Alien's Todo
+        </div>
+        <button class="logout">Log out</button>
+      </div>
+      <div class="content">
+        <h2 class="content__title">My Projects</h2>
+        <div class="create-project">
+          <p>Do you want to create a project?</p>
+          <p>Enter your project name here.</p>
+          <div>
+            <input
+              type="text"
+              class="create-project__input"
+              id="create-project__input"
+              placeholder="Project name"
+            />
+            <button class="button-small" id="create-project__button">
+              Create
+            </button>
+          </div>
+        </div>
+        <table class="table-project" id="table-project">
+        </table>
+      </div>
+    </div>
+    <script src="../scripts/project.js"></script>
+  </body>
+</html>

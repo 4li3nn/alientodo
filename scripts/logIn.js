@@ -1,9 +1,3 @@
-//form login
-//Mở trang
-//Nếu chưa đăng nhập thì sẽ để user đăng nhặp bth
-//Nếu đã đăng nhập trước đó thì chuyển hướng người dùng qua trang home
-//Nếu trước đó đã đăng nhập và check remember thì khi logout sẽ điền sẵn username và password
-
 const emailOrUsername = document.getElementById("emailOrUsername");
 const password = document.getElementById("password");
 const rememberCheckBox = document.getElementById("remember");
@@ -17,7 +11,7 @@ const registerButton = document.getElementById("login-button");
 const currentUser =
   JSON.parse(localStorage.getItem("currentUser")) || undefined;
 if (currentUser) {
-  window.location.href = "/aliendoit/todoapp/index.html";
+  window.location.href = "index.html";
 }
 
 window.onload = function () {
@@ -38,7 +32,7 @@ registerButton.addEventListener("click", (event) => {
   let accounts = JSON.parse(localStorage.getItem("accounts"));
   if (!accounts) {
     alert("Bạn cần đăng kí trước khi đăng nhập");
-    window.location.href = "/aliendoit/register/index.html";
+    window.location.href = "register.html";
     return;
   }
   const form = validateForm();
@@ -52,7 +46,7 @@ registerButton.addEventListener("click", (event) => {
           "currentUser",
           JSON.stringify(checkDatabase.inforUser)
         );
-        window.location.href = "/aliendoit/todoapp/index.html";
+        window.location.href = "index.html";
         if (rememberCheckBox.checked) {
           localStorage.setItem(
             "remember",
@@ -143,22 +137,6 @@ function validateRegExp(element, regExp, errorMessage) {
   return true;
 }
 
-const clearErrorMessage = (form, className) => {
-  document.forms[form]
-    .querySelectorAll(`.${className}`)
-    .forEach((element) => (element.innerHTML = ""));
-};
-function clearInput(form, className) {
-  document.forms[form]
-    .querySelectorAll(`.${className}`)
-    .forEach((element) => (element.value = ""));
-}
-
-function setErrorMessage(element, message) {
-  const errorSpan = element.nextElementSibling;
-  errorSpan.innerHTML = message;
-}
-
 function validateAlreadyExists(field, key, database) {
   let isValid = true;
   database.forEach((item) => {
@@ -207,4 +185,21 @@ function validateDatabase(data, database) {
     }
   });
   return result;
+}
+
+//handle DOM
+const clearErrorMessage = (form, className) => {
+  document.forms[form]
+    .querySelectorAll(`.${className}`)
+    .forEach((element) => (element.innerHTML = ""));
+};
+function clearInput(form, className) {
+  document.forms[form]
+    .querySelectorAll(`.${className}`)
+    .forEach((element) => (element.value = ""));
+}
+
+function setErrorMessage(element, message) {
+  const errorSpan = element.nextElementSibling;
+  errorSpan.innerHTML = message;
 }

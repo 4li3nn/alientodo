@@ -1,0 +1,10 @@
+Form Register 
+FullName phải nhập đủ hai từ ví dụ mm mm hoặc nếu là m m, m , a, m1 m1 thì không được.
+Email thì phải nhập đúng format email phải có @ phải có đuôi .com, .vn. chấm bất cứ gì không phải số kí tự đặc biệt
+Username thì đơn giản cứ nhập thỏa mái không có kí tự đặc biệt từ 2 đến 10 kí tự.
+PhoneNumber chỉ cần bắt đầu bằng số 0 và có 10 số
+Password thì nâng cao nha phải có kí tự đặc biệt phải có số có chữ thường chữ hoa.
+Confirm thì phải giống password.
+Case1: Nếu nhập thiếu bất kì field nào thì không cho pass là báo lỗi ở field không điền 'Requied'.
+Case2: Nhập sai field nào thì báo lỗi field đó và không cho pass
+Đăng kí thành công thì redirect sang trang login và lưu account vào localStorage.

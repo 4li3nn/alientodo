@@ -17,6 +17,10 @@ const registerButton = document.getElementById("register-button");
 registerButton.addEventListener("click", (event) => {
   event.preventDefault();
   clearErrorMessage("form-register", "error-message");
+  handleSubmit();
+});
+
+function handleSubmit() {
   let accounts = JSON.parse(localStorage.getItem("accounts"));
   const form = validateForm(accounts);
   if (form.isValid) {
@@ -27,11 +31,10 @@ registerButton.addEventListener("click", (event) => {
     }
     localStorage.setItem("accounts", JSON.stringify(accounts));
     console.log("Successfully registered");
-    window.location.href = "/aliendoit/login/index.html";
+    window.location.href = "logIn.html";
     clearInput("form-register", "input");
   }
-});
-
+}
 function validateForm(database) {
   const isValidFullName = validateInput({
     element: fullName,
