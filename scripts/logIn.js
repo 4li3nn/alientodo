@@ -6,13 +6,14 @@ const USERNAME_REGEX = /^(\w{2,10})$/;
 const PASSWORDS_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
-const registerButton = document.getElementById("login-button");
+const loginButton = document.getElementById("login-button");
 
-const currentUser =
-  JSON.parse(localStorage.getItem("currentUser")) || undefined;
-if (currentUser) {
-  window.location.href = "index.html";
-}
+(function () {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (currentUser) {
+    window.location.href = "index.html";
+  }
+})();
 
 window.onload = function () {
   const remember = JSON.parse(localStorage.getItem("remember"));
@@ -26,18 +27,25 @@ window.onload = function () {
   }
 };
 
-registerButton.addEventListener("click", (event) => {
+loginButton.addEventListener("click", (event) => {
   event.preventDefault();
+  handleSubmit();
+});
+
+function handleSubmit() {
   clearErrorMessage("form-login", "error-message");
   let accounts = JSON.parse(localStorage.getItem("accounts"));
+
+  //Validate Database exists or empty
   if (!accounts) {
     alert("Bạn cần đăng kí trước khi đăng nhập");
     window.location.href = "register.html";
     return;
   }
+
   const form = validateForm();
+  
   if (form.isValid) {
-    console.log(validateDatabase(form.data, accounts));
     const checkDatabase = validateDatabase(form.data, accounts);
     switch (checkDatabase.errCode) {
       case 0:
@@ -80,7 +88,7 @@ registerButton.addEventListener("click", (event) => {
         break;
     }
   }
-});
+}
 
 function validateForm() {
   const isValidEmailOrUsername = validateInput({
@@ -94,7 +102,6 @@ function validateForm() {
     errorMessage: "Password not correct",
   });
 
-  console.log(isValidEmailOrUsername, isValidPassword);
   return {
     isValid: isValidEmailOrUsername && isValidPassword,
     data: {
