@@ -64,7 +64,6 @@ body {
   font-weight: 500;
   color: var(--white);
 }
-
 .logout:hover {
   background-color: var(--primary-hover);
   color: red;
@@ -72,22 +71,27 @@ body {
 .logout:active {
   background-color: var(--primary-active);
 }
+.wrapper-content {
+  display: flex;
+  width: 90%;
+}
 .content {
-  width: 70%;
+  width: 84%;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 8%;
 }
 .content__title {
   color: var(--text-color);
 }
-.create-project{
+.create-project {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.create-project__input{
+.create-project__input {
   padding: 10px;
   outline: none;
   margin: 10px;
@@ -95,7 +99,6 @@ body {
   border-radius: 5px;
   font-size: 16px;
 }
-
 
 .table-project {
   border-collapse: collapse;
@@ -113,4 +116,24 @@ th {
 .table-project td:nth-child(1) {
   text-align: left;
   width: 50%;
+}
+.right-sidebar {
+  width: 16%;
+  padding: 0 10px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.users {
+  padding: 8px;
+}
+.user {
+  padding: 8px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

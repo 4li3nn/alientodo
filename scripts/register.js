@@ -158,7 +158,6 @@ function getLocalStorage(key) {
   const data = localStorage.getItem(key);
   console.log(data);
 }
-function setArrayDataToLocalStorage(data) {}
 function validateAlreadyExists(field, key, data) {
   let isValid = true;
   if (!data) {

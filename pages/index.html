@@ -10,6 +10,10 @@
       href="../assets/favicon.ico"
       type="image/x-icon"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
   </head>
   <body>
     <div class="wrapper">
@@ -22,24 +26,35 @@
         </div>
         <button id="logout-button" class="logout">Log out</button>
       </div>
-      <div class="content">
-        <h2 class="content__title">My Projects</h2>
-        <div class="create-project">
-          <p>Do you want to create a project?</p>
-          <p>Enter your project name here.</p>
-          <div>
-            <input
-              type="text"
-              class="create-project__input"
-              id="create-project__input"
-              placeholder="Project name"
-            />
-            <button class="button-small" id="create-project__button">
-              Create
-            </button>
+      <div class="wrapper-content">
+        <div class="content">
+          <h2 class="content__title">My Projects</h2>
+          <div class="create-project">
+            <p>Do you want to create a project?</p>
+            <p>Enter your project name here.</p>
+            <div>
+              <input
+                type="text"
+                class="create-project__input"
+                id="create-project__input"
+                placeholder="Project name"
+              />
+              <button class="button-small" id="create-project__button">
+                Create
+              </button>
+            </div>
+          </div>
+          <table class="table-project" id="table-project"></table>
+        </div>
+        <div class="right-sidebar">
+          <div class="sidebar__header">
+            <h2>Aliens</h2>
+          </div>
+          <div class="sidebar__content">
+            <ul class="users" id="users">
+            </ul>
           </div>
         </div>
-        <table class="table-project" id="table-project"></table>
       </div>
     </div>
     <script src="../scripts/checkLogged.js"></script>

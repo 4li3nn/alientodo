@@ -1,3 +1,5 @@
+//Khi add project thì sẽ add project đó vào mảng projecs sau đó trong accounts tìm đến account hiện tại add id của project vào field project
+
 const projects = JSON.parse(localStorage.getItem("projects")) || [];
 
 //get Username
@@ -17,6 +19,7 @@ createProjectButton.addEventListener("click", () => {
 
 function handleCreateProject(projects) {
   const createProjectInput = document.getElementById("create-project__input");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   var id = "pid" + new Date().getTime();
   const name = createProjectInput.value.trim();
   if (!name) {
@@ -25,11 +28,11 @@ function handleCreateProject(projects) {
   const project = {
     name,
     id,
-    author: "Minh Thanh",
+    author: currentUser.username,
     tasks: [],
     members: [
       {
-        name: "Minh Thanh",
+        name: currentUser.username,
         role: "admin",
       },
     ],
@@ -38,7 +41,6 @@ function handleCreateProject(projects) {
   projects.push(project);
   createProjectInput.value = "";
   createProjectInput.focus();
-  console.log(projects);
 }
 
 function handleShowDetail(id) {
@@ -79,4 +81,17 @@ function renderProjects(projects) {
   const table = document.getElementById("table-project");
   table.innerHTML = content;
 }
+
+function renderUsers() {
+  const accounts = JSON.parse(localStorage.getItem("accounts"));
+  const content = accounts.reduce((result, item) => {
+    return (result += `<li class="user">
+      <i class="fas fa-user"></i>
+  <span>${item.fullName}</span>
+</li>`);
+  }, "");
+  document.getElementById("users").innerHTML = content;
+}
+
 renderProjects(projects);
+renderUsers();
