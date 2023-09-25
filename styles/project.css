@@ -115,8 +115,17 @@ th {
 }
 .table-project td:nth-child(1) {
   text-align: left;
-  width: 50%;
+  width: 30%;
 }
+
+.done {
+  font-weight: 600;
+  color: var(--primary-active);
+}
+.in-progress {
+  color: red;
+}
+
 .right-sidebar {
   width: 16%;
   padding: 0 10px;

@@ -44,7 +44,7 @@ function handleSubmit() {
   }
 
   const form = validateForm();
-  
+
   if (form.isValid) {
     const checkDatabase = validateDatabase(form.data, accounts);
     switch (checkDatabase.errCode) {
@@ -165,6 +165,7 @@ function validateDatabase(data, database) {
       fullName: "",
       phoneNumber: "",
       email: "",
+      projects: [],
     },
   };
   database.forEach((item) => {
@@ -182,6 +183,7 @@ function validateDatabase(data, database) {
           phoneNumber: item.phoneNumber,
           email: item.email,
           password: item.password,
+          projects: item.projects || [],
         };
         return;
       } else {

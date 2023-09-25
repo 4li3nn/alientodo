@@ -12,6 +12,13 @@ const PHONENUMBER_REGEX = /^0\d{9}$/;
 const PASSWORDS_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
+(function () {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (currentUser) {
+    window.location.href = "index.html";
+  }
+})();
+
 const registerButton = document.getElementById("register-button");
 
 registerButton.addEventListener("click", (event) => {

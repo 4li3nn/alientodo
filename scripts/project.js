@@ -1,6 +1,5 @@
 //Khi add project thì sẽ add project đó vào mảng projecs sau đó trong accounts tìm đến account hiện tại add id của project vào field project
 
-const projects = JSON.parse(localStorage.getItem("projects")) || [];
 
 //get Username
 function getUsername() {
@@ -9,6 +8,9 @@ function getUsername() {
     currentUser?.fullName || "alien";
 }
 getUsername();
+renderProjects();
+renderUsers();
+
 
 const createProjectButton = document.getElementById("create-project__button");
 createProjectButton.addEventListener("click", () => {
@@ -55,16 +57,33 @@ function addProjectIdToAccount(id) {
   const accounts = JSON.parse(localStorage.getItem("accounts"));
   accounts.forEach((item) => {
     if (item.username === currentUser.username) {
-      if (item.project) {
-        item.project.push(`${id}`);
+      if (item.projects) {
+        item.projects.push(`${id}`);
       } else {
-        item.project = [`${id}`];
+        item.projects = [`${id}`];
       }
     }
   });
+  currentUser.projects.push(`${id}`);
   localStorage.setItem("accounts", JSON.stringify(accounts));
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+}
+function removeProjectIdInAccount(id) {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const accounts = JSON.parse(localStorage.getItem("accounts"));
+
+  accounts.forEach((account) => {
+    if (account.username === currentUser.username) {
+      const foundIndex = account.projects.findIndex((item) => item === id);
+      account.projects.splice(foundIndex, 1);
+      currentUser.projects.splice(foundIndex, 1);
+    }
+  });
+  localStorage.setItem("accounts", JSON.stringify(accounts));
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 
+//Handle button click
 function handleShowDetail(id) {
   location.href = `detail.html?id=${id}`;
 }
@@ -80,16 +99,32 @@ function handleDone(id) {
 }
 
 function handleDelete(id) {
-  const projects = JSON.parse(localStorage.getItem("projects")) || [];
-  const foundIndex = projects.findIndex((item) => item.id === id);
+  const projects = JSON.parse(localStorage.getItem("projects"));
+  const foundIndex = projects.findIndex((project) => project.id === id);
   console.log(foundIndex);
   projects.splice(foundIndex, 1);
   localStorage.setItem("projects", JSON.stringify(projects));
+  removeProjectIdInAccount(id);
   renderProjects();
 }
 
-function renderProjects() {
+function getYourProjects() {
   const projects = JSON.parse(localStorage.getItem("projects")) || [];
+  const projectsId =
+    JSON.parse(localStorage.getItem("currentUser")).projects || [];
+  const result = [];
+  projectsId.forEach((projectId) => {
+    projects.forEach((project) => {
+      if (projectId === project.id) {
+        result.push(project);
+      }
+    });
+  });
+  return result;
+}
+
+function renderProjects() {
+  const projects = getYourProjects();
   let content = "You don't have any projects. Let's create a project";
   if (projects.length) {
     content = projects.reduce(
@@ -139,5 +174,3 @@ function renderUsers() {
   document.getElementById("users").innerHTML = content;
 }
 
-renderProjects(projects);
-renderUsers();
