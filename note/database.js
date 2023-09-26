@@ -14,9 +14,16 @@ const projects = [
   {
     name: "Do homeword",
     id: "project1",
-    author: 'alien',
+    author: "alien",
     tasks: [
       {
+        id: "task1",
+        content: "Do homework",
+        author: "alien",
+        done: false,
+      },
+      {
+        id: "task2",
         content: "Do homework",
         author: "alien",
         done: false,

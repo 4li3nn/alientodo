@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail | Alien</title>
+    <link rel="stylesheet" href="../styles/detail.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="logo">
+          <a href="index.html"><img src="../assets/LogoSVG.svg" alt="logo" /></a>
+        </div>
+        <div class="header__welcome">
+          Welcome <span id="welcome-username"></span> to Alien's Todo
+        </div>
+        <button id="logout-button" class="logout">Log out</button>
+      </div>
+      <div class="wrapper-content">
+        <div class="content">
+          <h2 class="content__title" id="project-name"></h2>
+          <div class="create-task">
+            <p>Let's create and complete all the tasks here</p>
+            <div>
+              <input
+                type="text"
+                class="create-task__input"
+                id="create-task__input"
+                placeholder="Task content"
+              />
+              <button class="button-small" id="create-task__button">
+                Create
+              </button>
+            </div>
+          </div>
+          <table class="table-task" id="table-task"></table>
+        </div>
+        <div class="right-sidebar">
+          <div class="sidebar__header">
+            <h2>Members</h2>
+          </div>
+          <div class="sidebar__content">
+            <ul class="members" id="members"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/checkLogged.js"></script>
+    <script src="../scripts/logOut.js"></script>
+    <script src="../scripts/detail.js"></script>
+  </body>
+</html>
