@@ -113,9 +113,17 @@ th {
   border: 1px solid #9c9a9a;
   padding: 10px;
 }
-.table-tasK td:nth-child(1) {
+.table-task td:nth-child(1) {
   text-align: left;
   width: 40%;
+}
+.table-task td:nth-child(2) {
+  text-align: center;
+  width: 16%;
+}
+.table-task #input-edit-task{
+  outline: none;
+  border: none;
 }
 .done {
   font-weight: 600;
