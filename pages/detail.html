@@ -50,10 +50,37 @@
         <div class="right-sidebar">
           <div class="sidebar__header">
             <h2>Members</h2>
+            <button class="invite-member button-small" id="open-modal-invite">
+              Invite +
+            </button>
           </div>
           <div class="sidebar__content">
             <ul class="members" id="members"></ul>
           </div>
+        </div>
+      </div>
+      <div class="modal-invite" id="modal-invite">
+        <div class="modal-invite-content">
+          <header class="modal-invite__header">
+            <span onclick="handleCloseModal()" class="close-modal">&times;</span>
+            <h3>Invite member</h3>
+          </header>
+          <div class="modal__main-content">
+            <p>Enter username of member you want invite right here</p>
+            <input
+              type="text"
+              placeholder="Enter username"
+              class="invite-input"
+              id="invite-input"
+            />
+            <p class="message-error" id="message-error"></p>
+          </div>
+          <footer class="modal-invite__footer">
+            <button class="button-small" id="confirm-invite">Invite+</button>
+            <button class="button-small cancel-invite" onclick="handleCloseModal()">
+              Cancel
+            </button>
+          </footer>
         </div>
       </div>
     </div>

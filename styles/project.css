@@ -47,6 +47,8 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  background-color: #fff;
 }
 .header__welcome {
   font-weight: 600;
@@ -74,6 +76,7 @@ body {
 .wrapper-content {
   display: flex;
   width: 90%;
+  margin-top: 60px;
 }
 .content {
   width: 84%;

@@ -104,6 +104,7 @@ function validateForm(database) {
       username: username.value.trim(),
       phoneNumber: phoneNumber.value.trim(),
       password: password.value.trim(),
+      projects: [],
     },
   };
 }

@@ -1,16 +1,20 @@
-//Khi add project thì sẽ add project đó vào mảng projecs sau đó trong accounts tìm đến account hiện tại add id của project vào field project
+getUsername();
+renderProjects();
+renderUsers();
 
-
-//get Username
 function getUsername() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   document.getElementById("welcome-username").innerHTML =
     currentUser?.fullName || "alien";
 }
-getUsername();
-renderProjects();
-renderUsers();
 
+const createProjectInput = document.getElementById("create-project__input");
+createProjectInput.addEventListener("keydown", (event) => {
+  if (event.keyCode === 13) {
+    handleCreateProject();
+    renderProjects();
+  }
+});
 
 const createProjectButton = document.getElementById("create-project__button");
 createProjectButton.addEventListener("click", () => {
@@ -164,13 +168,12 @@ function renderProjects() {
 }
 
 function renderUsers() {
-  const accounts = JSON.parse(localStorage.getItem("accounts"));
+  const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
   const content = accounts.reduce((result, item) => {
     return (result += `<li class="user">
-      <i class="fas fa-user"></i>
-  <span>${item.fullName}</span>
-</li>`);
+          <i class="fas fa-user"></i>
+      <span>${item.fullName}</span>
+    </li>`);
   }, "");
   document.getElementById("users").innerHTML = content;
 }
-

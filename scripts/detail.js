@@ -2,16 +2,6 @@ const projects = JSON.parse(localStorage.getItem("projects")) || [];
 const currentProject = projects.find(
   (project) => project.id === getParameterByName("id")
 );
-//get Username
-function renderUsername() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  document.getElementById("welcome-username").innerHTML =
-    currentUser?.fullName || "alien";
-}
-
-function renderProjectName(project) {
-  document.getElementById("project-name").innerHTML = project.name;
-}
 
 renderUsername();
 renderProjectName(currentProject);
@@ -20,7 +10,6 @@ renderMembers();
 
 const createTaskInput = document.getElementById("create-task__input");
 createTaskInput.addEventListener("keydown", (event) => {
-  console.log(event.keyCode);
   if (event.keyCode === 13) {
     handleCreateTask();
     renderTasks();
@@ -29,12 +18,15 @@ createTaskInput.addEventListener("keydown", (event) => {
 
 const createTaskButton = document.getElementById("create-task__button");
 createTaskButton.addEventListener("click", () => {
-  window.addEventListener("keydown", (event) => {
-    console.log(event.keyCode);
-  });
   handleCreateTask();
   renderTasks();
 });
+const confirmInviteButton = document.getElementById("confirm-invite");
+confirmInviteButton.addEventListener("click", () => {
+  handleAddMember();
+});
+
+//Handle task
 
 function handleCreateTask() {
   const createTaskInput = document.getElementById("create-task__input");
@@ -71,7 +63,7 @@ function addTaskToProject(name, id) {
   localStorage.setItem("projects", JSON.stringify(projects));
 }
 
-function handleEdit(id) {
+function handleEditTask(id) {
   renderTasks();
   const element = document.getElementById(`task-${id}`);
   const task = element.getElementsByClassName("task-name");
@@ -80,18 +72,16 @@ function handleEdit(id) {
   task[0].innerHTML = `<input type="text" id='input-edit-task' />`;
   task[0].children[0].value = content;
   task[0].children[0].focus();
-  
 
   const editTask = element.getElementsByClassName("task-edit");
   editTask[0].innerHTML = `<button class="save-button button-small">Save</button>`;
 
   editTask[0].children[0].onclick = () => {
-    handleSaveEdit(id, task[0].children[0].value);
+    handleSaveEditTask(id, task[0].children[0].value);
   };
-
 }
 
-function handleDelete(id) {
+function handleDeleteTask(id) {
   const projects = JSON.parse(localStorage.getItem("projects")) || [];
   const currentProject = projects.find(
     (project) => project.id === getParameterByName("id")
@@ -108,7 +98,7 @@ function handleDelete(id) {
   localStorage.setItem("projects", JSON.stringify(projects));
   renderTasks();
 }
-function handleDone(id) {
+function handleDoneTask(id) {
   const projects = JSON.parse(localStorage.getItem("projects")) || [];
   const currentProject = projects.find(
     (project) => project.id === getParameterByName("id")
@@ -126,7 +116,7 @@ function handleDone(id) {
   renderTasks();
 }
 
-function handleSaveEdit(id, name) {
+function handleSaveEditTask(id, name) {
   const projects = JSON.parse(localStorage.getItem("projects")) || [];
   const currentProject = projects.find(
     (project) => project.id === getParameterByName("id")
@@ -143,6 +133,51 @@ function handleSaveEdit(id, name) {
   localStorage.setItem("projects", JSON.stringify(projects));
   renderTasks();
 }
+
+//Handle member
+function handleAddMember() {
+  const username = document.getElementById("invite-input").value.trim();
+  if (!username) {
+    return;
+  }
+
+  const projects = JSON.parse(localStorage.getItem("projects")) || [];
+  const currentProject = projects.find(
+    (project) => project.id === getParameterByName("id")
+  );
+  const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+
+  const alreadyExist = !!currentProject.members.find((member) => {
+    return member.name === username;
+  });
+  if (alreadyExist) {
+    document.getElementById("message-error").innerHTML =
+      "This members already exist in this project.";
+    return;
+  }
+
+  let findUser = false;
+
+  accounts.forEach((account) => {
+    if (account.username === username) {
+      account.projects.push(`${currentProject.id}`);
+      findUser = true;
+    }
+  });
+
+  if (!findUser) {
+    document.getElementById("message-error").innerHTML =
+      "Can't find this username.";
+    return;
+  }
+
+  currentProject.members.push({ name: username, role: "user" });
+  localStorage.setItem("projects", JSON.stringify(projects));
+  localStorage.setItem("accounts", JSON.stringify(accounts));
+  location.reload();
+}
+
+// render function
 
 function renderTasks() {
   const projects = JSON.parse(localStorage.getItem("projects")) || [];
@@ -161,12 +196,12 @@ function renderTasks() {
           item.done ? "Done" : "In Progress"
         }</td>
     <td>${item.author}</td>
-    <td class='task-done'><button class="done-button button-small" onclick=handleDone('${
+    <td class='task-done'><button class="done-button button-small" onclick=handleDoneTask('${
       item.id
     }')>Done</button></td>
     <td class='task-edit'><button class="edit-button button-small" 
-    onclick=handleEdit('${item.id}')>Edit</button></td>
-    <td class='task-delete'><button class="delete-button button-small" ondblclick=handleDelete('${
+    onclick=handleEditTask('${item.id}')>Edit</button></td>
+    <td class='task-delete'><button class="delete-button button-small" ondblclick=handleDeleteTask('${
       item.id
     }')>Delete</button></td>
   </tr>`);
@@ -190,12 +225,21 @@ function renderMembers() {
   );
   const members = currentProject.members;
   const content = members.reduce((result, item) => {
-    return (result += `<li class="user">
+    return (result += `<li class="member">
       <i class="fas fa-user"></i>
   <span>${item.name}</span>
 </li>`);
   }, "");
   document.getElementById("members").innerHTML = content;
+}
+function renderUsername() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  document.getElementById("welcome-username").innerHTML =
+    currentUser?.fullName || "alien";
+}
+
+function renderProjectName(project) {
+  document.getElementById("project-name").innerHTML = project.name;
 }
 
 function getParameterByName(name) {
@@ -205,4 +249,22 @@ function getParameterByName(name) {
   if (!results) return null;
   if (!results[2]) return "";
   return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+const openModalButton = document.getElementById("open-modal-invite");
+openModalButton.addEventListener("click", () => {
+  const modal = document.getElementById("modal-invite");
+  modal.style.display = "flex";
+  const usernameInput = document.getElementById("invite-input");
+  usernameInput.value = "";
+  usernameInput.focus();
+  window.addEventListener("keydown", (event) => {
+    if (event.keyCode === 27) {
+      handleCloseModal();
+    }
+  });
+});
+
+function handleCloseModal() {
+  document.getElementById("modal-invite").style.display = "none";
 }
