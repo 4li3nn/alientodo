@@ -1,0 +1,42 @@
+@startuml
+
+
+
+entity "user" as user {
+    *username : string
+    *email: string
+    *phoneNumber : string
+    --
+    *fullName : string
+    *password : string
+}
+entity "project-user" as projectUser {
+    *userId : string
+    *projectId : string
+    *userRole: string
+}
+
+
+entity "project" as project {
+    *id : string <<generated>>
+    --
+    *author: string
+    done: boolean
+}
+
+
+entity "task" as task {
+    *id : string <<generated>>
+    --
+    *author: string
+    *name: string
+    *done: boolean
+    *projectId: string
+}
+
+user ||..o{ projectUser
+project ||..o{ projectUser
+project ||..o{ task
+
+
+@enduml
